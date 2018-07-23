@@ -1,94 +1,55 @@
-* {
-        margin: 0px;
-        padding: 0px;
+body {
+        background-image: url("https://s-media-cache-ak0.pinimg.com/564x/cc/83/1e/cc831e0142b28f2967bbaca05e6da49d.jpg");
+        font-family: Comic Sans, Comic Sans MS, cursive;
     }
     
-    body {
-        font-family: Consolas, Monaco, Lucida Console, Liberation Mono, DejaVu Sans Mono, Bitstream Vera Sans Mono, Courier New;
-        font-weight: 300;
+    #container {
+        width: 700px;
+        margin: 0 auto;
     }
     
-    #menuBar {
-        width: 100%;
-        height: 58px;
-        background-color: #e0e0e0;
-        border-bottom: 1px solid grey;
+    #chatWindow {
+        height: 300px;
     }
-    
-    #logo {
-        padding: 10px;
-        font-weight: bold;
-        font-size: 1.2em;
-        float: left;
-    }
-    
-    #buttonDiv {
-        float: right;
-        padding: 10px;
-    }
-    
-    #runButton {
-        font-size: 1.2em;
-        margin: -3px 0px 15px 0px;
-    }
-    
-    #toggles {
-        width: 192px;
-        margin: 0px auto;
-        list-style: none;
-        border: 1px solid grey;
-        padding: 0px;
-        border-radius: 3px;
-        height: 28px;
-        position: relative;
-        top: 5px;
-    }
-    
-    #toggles li {
-        float: left;
-        border-right: 1px solid grey;
-        padding: 5px;
-    }
-    
-    .clear {
-        clear: both;
-    }
-    
-    .codeContainer {
-        height: 100%;
-        width: 50%;
-        float: left;
-        position: relative;
-    }
-    
-    .codeContainer textarea {
-        width: 100%;
-        height: 100%;
-        border: none;
-        border-right: 1px solid grey;
-        font-size: 1.2em;
-        padding: 3px;
-        box-sizing: border-box;
-    }
-    
-    .codeLabel {
-        position: absolute;
-        right: 10px;
-        top: 10px;
-    }
-    
-    #CSSContainer,
-    #JSContainer {
+   
+    #mainWrapper {
         display: none;
     }
     
-    iframe {
-        height: 100%;
-        position: relative;
-        left: 20px;
-        border: none;
+    #chatWrapper {
+        float: left;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background: #F6F5F3;
+        padding: 10px;
+        opacity: 0.95;
     }
     
-    .selected {
-        background-color: black;
+    #userWrapper {
+        float: left;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        background: #f4f4f4;
+        padding: 10px;
+        margin-left: 20px;
+        width: 150px;
+        max-height: 200px;
+        opacity: 0.95;
+    }
+    
+    #namesWrapper {
+        margin: 40px auto;
+        float: left;
+        border: 1px #ccc solid;
+        border-radius: 10px;
+        opacity: 1.2;
+        background: #efdceb;
+        padding: 10px;
+        margin-left: 20px;
+        opacity: 0.95;
+    }
+    
+    input {
+        height: 30px;
+        border: 1px solid #ccc;
     }
