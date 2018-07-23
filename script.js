@@ -1,30 +1,43 @@
-var windowHeight = $(window).height();
-    var menuBarHeight = $("#menuBar").height();
-    // alert(windowHeight);// to check height of window
-    // alert(menuBarHeight);//to check height of menuBarHeight
-    var codeContainerHeight = windowHeight - menuBarHeight;
-    $(".codeContainer").height(codeContainerHeight + "px");
-    $(".toggle").click(function() {
-        $(this).toggleClass("selected");
+ $(function() {
+            var socket = io.connect();
+            var $messageForm = $('#messageForm');
+            var $message = $('#message');
+            var $chat = $('#chatWindow');
+            var $usernameForm = $('#usernameForm');
+            var $users = $('#users');
+            var $username = $('#username');
+            var $error = $('#error');
 
-        var activeDiv = $(this).html();
 
-        $("#" + activeDiv + "Container").toggle();
+            $usernameForm.submit(function(e) {
+                e.preventDefault();
 
-        var showingDivs = $(".codeContainer").filter(function() {
-            return ($(this).css("display") != "none");
-        }).length;
+                socket.emit('new user', $username.val(), function(data) {
 
-        //alert(showingDivs);// to check no. of div shown on screen
+                    if (data) {
+                        $('#namesWrapper').hide();
+                        $('#mainWrapper').show();
+                    } else {
+                        $error.html('Username is taken');
+                    }
+                });
+            });
 
-        var width = 100 / showingDivs; //diviing spaces to divs
+            socket.on('usernames', function(data) {
+                var html = '';
+                for (i = 0; i < data.length; i++) {
+                    html += data[i] + '<br>';
+                }
+                $users.html(html);
+            })
+            $messageForm.submit(function(e) {
+                e.preventDefault();
+                console.log('helo');
+                socket.emit('send message', $message.val());
+                $message.val('');
+            });
 
-        $(".codeContainer").width(width + "%");
-
-    });
-
-    $("#runButton").click(function() {
-        $("iframe").contents().find("html").html('<style>' + $("#cssCode").val() + '</style>' + $("#htmlCode").val());
-
-        document.getElementById("resultFrame").contentWindow.eval($("#jsCode").val()); // js running security issues , contentwindow to solve in iframe
-    });
+            socket.on('new message', function(data) {
+                $chat.append('<strong>' + data.user + ' </strong>' + data.msg + '<br>');
+            });
+        });
